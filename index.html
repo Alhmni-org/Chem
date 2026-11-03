@@ -1,0 +1,1445 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#063b2b">
+    <title>حصين | الوعي الرقمي مسؤولية وطنية</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --green-950: #032d20;
+            --green-900: #06432f;
+            --green-800: #075536;
+            --green-700: #0c704a;
+            --green-600: #16845c;
+            --green-100: #e8f2ec;
+            --green-50: #f4f8f5;
+            --gold: #c8a968;
+            --gold-light: #e5d5ad;
+            --white: #ffffff;
+            --ink: #1b2b25;
+            --muted: #718078;
+            --danger: #d94b4b;
+            --success: #159765;
+            --border: #e1eae4;
+            --shadow: 0 18px 55px rgba(3, 45, 32, .09);
+            --radius: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f5f8f5;
+            color: var(--ink);
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        button, input {
+            font: inherit;
+        }
+
+        button:focus-visible,
+        input:focus-visible,
+        li:focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: 3px;
+        }
+
+        /* الخلفية الهندسية */
+        .national-pattern {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
+            opacity: .25;
+            background-image:
+                linear-gradient(45deg, transparent 46%, #dce8df 47%, #dce8df 49%, transparent 50%),
+                linear-gradient(-45deg, transparent 46%, #e6dfce 47%, #e6dfce 49%, transparent 50%);
+            background-size: 48px 48px;
+            mask-image: linear-gradient(to bottom, black, transparent 75%);
+        }
+
+        /* شريط الهوية */
+        .top-line {
+            height: 5px;
+            background: linear-gradient(
+                90deg,
+                var(--gold),
+                var(--green-800),
+                var(--green-600),
+                var(--gold)
+            );
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,.94);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(7,85,54,.1);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .brand img {
+            width: 53px;
+            height: 53px;
+            object-fit: contain;
+        }
+
+        .brand-title {
+            color: var(--green-900);
+            font-size: 1.15rem;
+            font-weight: 900;
+        }
+
+        .brand-subtitle {
+            font-size: .82rem;
+            color: var(--muted);
+            margin-top: 3px;
+        }
+
+        .national-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--green-800);
+            font-size: .88rem;
+            font-weight: 800;
+            background: var(--green-50);
+            border: 1px solid #dce9df;
+            border-radius: 30px;
+            padding: 9px 15px;
+        }
+
+        .national-label i {
+            color: var(--gold);
+        }
+
+        /* المحتوى */
+        .container {
+            width: min(1050px, calc(100% - 32px));
+            margin: 35px auto 55px;
+            flex: 1;
+        }
+
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+            animation: appear .5s ease both;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* شاشة البداية */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            min-height: 380px;
+            padding: 55px 45px;
+            border-radius: 28px;
+            color: white;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(200,169,104,.2), transparent 30%),
+                radial-gradient(circle at 90% 100%, rgba(37,151,103,.25), transparent 35%),
+                linear-gradient(125deg, #032d20, #075536 58%, #0c704a);
+            box-shadow: 0 22px 60px rgba(3,45,32,.18);
+        }
+
+        .hero::before,
+        .hero::after {
+            content: "";
+            position: absolute;
+            border: 1px solid rgba(229,213,173,.25);
+            transform: rotate(45deg);
+            pointer-events: none;
+        }
+
+        .hero::before {
+            width: 270px;
+            height: 270px;
+            left: -85px;
+            top: -90px;
+        }
+
+        .hero::after {
+            width: 190px;
+            height: 190px;
+            left: -45px;
+            top: -50px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+        }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            border: 1px solid rgba(229,213,173,.45);
+            background: rgba(255,255,255,.08);
+            border-radius: 30px;
+            padding: 8px 16px;
+            color: var(--gold-light);
+            font-weight: 700;
+            font-size: .9rem;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3.2rem, 8vw, 5.7rem);
+            line-height: 1.1;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 span {
+            color: var(--gold-light);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            font-weight: 700;
+            margin-top: 18px;
+            line-height: 1.7;
+        }
+
+        .hero-description {
+            color: rgba(255,255,255,.78);
+            line-height: 1.9;
+            font-size: 1.05rem;
+            max-width: 650px;
+            margin-top: 14px;
+        }
+
+        .hero-bottom {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .hero-tag {
+            padding: 8px 14px;
+            border-radius: 8px;
+            background: rgba(255,255,255,.09);
+            border: 1px solid rgba(255,255,255,.12);
+            font-size: .88rem;
+            color: #f3f7f3;
+        }
+
+        .section-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 30px;
+            margin-top: 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-heading {
+            color: var(--green-900);
+            font-size: 1.55rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .section-description {
+            color: var(--muted);
+            line-height: 1.9;
+            margin-bottom: 23px;
+        }
+
+        /* رسالة وطنية */
+        .national-message {
+            display: grid;
+            grid-template-columns: 55px 1fr;
+            align-items: center;
+            gap: 16px;
+            padding: 21px;
+            border-radius: 15px;
+            background: linear-gradient(110deg, #f7f9f4, #eef5ef);
+            border-right: 4px solid var(--gold);
+            margin-top: 20px;
+        }
+
+        .national-message .message-icon {
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            background: var(--green-800);
+            color: white;
+            border-radius: 15px;
+            font-size: 1.3rem;
+        }
+
+        .national-message strong {
+            display: block;
+            color: var(--green-900);
+            font-size: 1.08rem;
+            margin-bottom: 5px;
+        }
+
+        .national-message p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* أزرار */
+        .btn {
+            border: 0;
+            border-radius: 11px;
+            padding: 14px 24px;
+            background: linear-gradient(120deg, var(--green-900), var(--green-700));
+            color: white;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .25s ease;
+            box-shadow: 0 7px 18px rgba(7,85,54,.15);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 11px 25px rgba(7,85,54,.22);
+        }
+
+        .btn-gold {
+            background: linear-gradient(120deg, #b18c45, #d0b575);
+            color: #26352b;
+            box-shadow: 0 7px 18px rgba(177,140,69,.18);
+        }
+
+        .btn-secondary {
+            background: #eef3ef;
+            color: var(--green-900);
+            border: 1px solid #d8e5db;
+            box-shadow: none;
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        /* مراحل الرحلة */
+        .journey {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .journey-step {
+            padding: 17px 10px;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            text-align: center;
+            background: #fbfdfb;
+        }
+
+        .journey-step i {
+            color: var(--green-700);
+            font-size: 1.35rem;
+            display: block;
+            margin-bottom: 9px;
+        }
+
+        .journey-step span {
+            font-size: .9rem;
+            color: var(--green-900);
+            font-weight: 800;
+        }
+
+        /* نموذج التجربة */
+        .form-group {
+            margin-bottom: 19px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--green-900);
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border: 1.5px solid #dce6df;
+            border-radius: 10px;
+            background: #fbfdfb;
+            color: var(--ink);
+            font-size: 1rem;
+            transition: .2s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--green-600);
+            box-shadow: 0 0 0 4px rgba(22,132,92,.1);
+        }
+
+        .privacy-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 13px;
+            background: #f1f7f2;
+            border-radius: 10px;
+            color: var(--green-900);
+            font-size: .9rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .privacy-note i {
+            margin-top: 3px;
+            color: var(--green-700);
+        }
+
+        /* شاشة التنبيه */
+        .alert-panel {
+            text-align: center;
+            border: 1px solid #f4cccc;
+            background: linear-gradient(140deg, #fffafa, #fff2f2);
+            border-radius: 17px;
+            padding: 28px;
+        }
+
+        .alert-icon {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            background: #fee2e2;
+            color: var(--danger);
+            display: grid;
+            place-items: center;
+            font-size: 2rem;
+            margin: 0 auto 17px;
+        }
+
+        .alert-panel h2 {
+            color: #b83232;
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .alert-panel > p {
+            color: #7f3535;
+            line-height: 1.9;
+        }
+
+        .data-preview {
+            text-align: right;
+            background: white;
+            border: 1px solid #f2d2d2;
+            border-radius: 12px;
+            padding: 17px;
+            margin: 22px 0;
+        }
+
+        .data-preview h3 {
+            color: #a52e2e;
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+        }
+
+        .data-line {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 9px 0;
+            border-bottom: 1px solid #f3eeee;
+            overflow-wrap: anywhere;
+        }
+
+        .data-line:last-child {
+            border-bottom: 0;
+        }
+
+        .data-line span:first-child {
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        .data-line span:last-child {
+            color: #b83232;
+            font-weight: 800;
+            overflow-wrap: anywhere;
+        }
+
+        .lesson-box {
+            text-align: right;
+            background: #edf7f0;
+            color: var(--green-900);
+            padding: 18px;
+            border-radius: 12px;
+            margin-top: 20px;
+            line-height: 1.9;
+        }
+
+        .lesson-box strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* بطاقات التوعية */
+        .awareness-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .awareness-card {
+            border: 1px solid var(--border);
+            background: linear-gradient(145deg, #fff, #f6faf6);
+            border-radius: 15px;
+            padding: 22px;
+            transition: .25s ease;
+        }
+
+        .awareness-card:hover {
+            transform: translateY(-5px);
+            border-color: #a9cbb5;
+            box-shadow: 0 10px 25px rgba(7,85,54,.08);
+        }
+
+        .awareness-card .icon {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            color: white;
+            background: var(--green-800);
+            font-size: 1.2rem;
+            margin-bottom: 14px;
+        }
+
+        .awareness-card h3 {
+            color: var(--green-900);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .awareness-card p {
+            color: var(--muted);
+            font-size: .94rem;
+            line-height: 1.8;
+        }
+
+        /* الاختبار */
+        .question-box {
+            padding: 23px;
+            background: #f6f9f6;
+            border: 1px solid var(--border);
+            border-right: 4px solid var(--gold);
+            border-radius: 14px;
+        }
+
+        .question-box h3 {
+            color: var(--green-900);
+            line-height: 1.9;
+            font-size: 1.12rem;
+        }
+
+        .options-list {
+            list-style: none;
+            margin-top: 18px;
+        }
+
+        .options-list li {
+            padding: 14px 16px;
+            background: white;
+            border: 1px solid #dce6df;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: .2s ease;
+            line-height: 1.7;
+        }
+
+        .options-list li:hover {
+            border-color: var(--green-600);
+            background: #f1f8f2;
+            transform: translateX(-3px);
+        }
+
+        .feedback {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            line-height: 1.8;
+        }
+
+        .feedback.correct {
+            display: block;
+            color: #075b3c;
+            background: #e2f5e9;
+            border: 1px solid #a5ddba;
+        }
+
+        .feedback.incorrect {
+            display: block;
+            color: #9b2828;
+            background: #fff0f0;
+            border: 1px solid #f1b5b5;
+        }
+
+        /* النتيجة والخاتمة */
+        .final-card {
+            text-align: center;
+            padding: 42px 25px;
+        }
+
+        .final-emblem {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 22px;
+            display: grid;
+            place-items: center;
+            color: var(--gold);
+            background: var(--green-900);
+            border-radius: 26px;
+            font-size: 2.3rem;
+            box-shadow: 0 12px 30px rgba(7,85,54,.2);
+            transform: rotate(-3deg);
+        }
+
+        .final-quote {
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 15px;
+            background: linear-gradient(120deg, #f2f7f3, #fbf8ef);
+            border-right: 5px solid var(--gold);
+            color: var(--green-900);
+            font-size: 1.2rem;
+            font-weight: 800;
+            line-height: 2;
+        }
+
+        .final-caption {
+            color: var(--muted);
+            line-height: 1.9;
+            margin: 15px auto 25px;
+            max-width: 650px;
+        }
+
+        /* التذييل */
+        footer {
+            color: white;
+            background: linear-gradient(115deg, #032d20, #075536 60%, #0b6844);
+            border-top: 4px solid var(--gold);
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before,
+        footer::after {
+            content: "";
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 1px solid rgba(229,213,173,.17);
+            transform: rotate(45deg);
+        }
+
+        footer::before {
+            right: -55px;
+            top: -65px;
+        }
+
+        footer::after {
+            left: -55px;
+            bottom: -65px;
+        }
+
+        .footer-title {
+            color: var(--gold-light);
+            font-size: 1.05rem;
+            font-weight: 900;
+            margin-bottom: 9px;
+        }
+
+        .footer-university {
+            font-size: .9rem;
+            color: rgba(255,255,255,.8);
+            line-height: 1.9;
+        }
+
+        .footer-credit {
+            display: inline-block;
+            margin-top: 13px;
+            padding: 8px 17px;
+            border: 1px solid rgba(229,213,173,.35);
+            border-radius: 30px;
+            color: white;
+            font-size: .9rem;
+        }
+
+        .footer-disclaimer {
+            display: block;
+            max-width: 750px;
+            margin: 14px auto 0;
+            font-size: .78rem;
+            color: rgba(255,255,255,.58);
+            line-height: 1.7;
+        }
+
+        /* الاستجابة للجوال */
+        @media (max-width: 700px) {
+            .header-inner {
+                padding: 12px 15px;
+            }
+
+            .brand img {
+                width: 43px;
+                height: 43px;
+            }
+
+            .brand-title {
+                font-size: .98rem;
+            }
+
+            .brand-subtitle {
+                font-size: .72rem;
+            }
+
+            .national-label {
+                font-size: .72rem;
+                padding: 7px 10px;
+            }
+
+            .container {
+                margin-top: 20px;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 38px 23px;
+                border-radius: 20px;
+            }
+
+            .hero h1 {
+                font-size: 3.6rem;
+            }
+
+            .hero-description {
+                font-size: .96rem;
+            }
+
+            .section-card {
+                padding: 21px 17px;
+            }
+
+            .journey {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .awareness-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .national-message {
+                grid-template-columns: 1fr;
+            }
+
+            .button-row {
+                flex-direction: column;
+            }
+
+            .button-row .btn {
+                width: 100%;
+            }
+
+            .data-line {
+                flex-direction: column;
+                gap: 3px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .national-label {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="national-pattern"></div>
+<div class="top-line"></div>
+
+<header>
+    <div class="header-inner">
+        <div class="brand">
+            <img src="logo.png.jpg" alt="شعار جامعة الملك عبدالعزيز">
+            <div>
+                <div class="brand-title">جامعة الملك عبدالعزيز</div>
+                <div class="brand-subtitle">كلية العلوم | قسم الكيمياء</div>
+            </div>
+        </div>
+
+        <div class="national-label">
+            <i class="fa-solid fa-shield-halved"></i>
+            الوعي الرقمي مسؤولية وطنية
+        </div>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- الشاشة الأولى: الهوية الوطنية -->
+    <section id="screen-1" class="screen active">
+
+        <div class="hero">
+            <div class="hero-content">
+
+                <div class="hero-kicker">
+                    <i class="fa-solid fa-star"></i>
+                    مبادرة توعوية مجتمعية
+                </div>
+
+                <h1>حصين<span>.</span></h1>
+
+                <div class="hero-subtitle">
+                    وعيٌ يحميك، وأمانٌ يعزز وطنك.
+                </div>
+
+                <p class="hero-description">
+                    في عالم تتسارع فيه التقنية وتتزايد فيه التحديات الرقمية،
+                    تبدأ حماية الوطن من وعي أفراده.
+                    انضم إلى رحلة حصين، واكتشف كيف تحمي هويتك الرقمية،
+                    وتحافظ على بياناتك، وتكون جزءًا من مجتمع رقمي أكثر أمانًا.
+                </p>
+
+                <div class="hero-bottom">
+                    <span class="hero-tag"><i class="fa-solid fa-shield-halved"></i> الأمن السيبراني</span>
+                    <span class="hero-tag"><i class="fa-solid fa-user-shield"></i> حماية البيانات</span>
+                    <span class="hero-tag"><i class="fa-solid fa-flag"></i> مسؤولية وطنية</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h2 class="section-heading">لماذا حصين؟</h2>
+
+            <p class="section-description">
+                لأن الأمن الرقمي لم يعد خيارًا فرديًا، بل أصبح جزءًا من مسؤوليتنا
+                تجاه أنفسنا ومجتمعنا ووطننا. تهدف هذه التجربة إلى رفع الوعي
+                بأساليب التصيد الإلكتروني، وتعزيز السلوك الرقمي الآمن من خلال
+                محاكاة تعليمية تفاعلية.
+            </p>
+
+            <div class="national-message">
+                <div class="message-icon">
+                    <i class="fa-solid fa-flag"></i>
+                </div>
+                <div>
+                    <strong>وطنٌ آمن يبدأ بفردٍ واعٍ</strong>
+                    <p>
+                        حماية بياناتك خطوة في بناء فضاء رقمي موثوق،
+                        ومساهمتك في نشر الوعي تصنع أثرًا يتجاوز حدودك الشخصية.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h2 class="section-heading">رحلتك مع حصين</h2>
+            <p class="section-description">
+                خمس خطوات تفاعلية تنقلك من التجربة إلى المعرفة ثم إلى الممارسة.
+            </p>
+
+            <div class="journey">
+                <div class="journey-step">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                    <span>التجربة</span>
+                </div>
+                <div class="journey-step">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span>الاكتشاف</span>
+                </div>
+                <div class="journey-step">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>التعلّم</span>
+                </div>
+                <div class="journey-step">
+                    <i class="fa-solid fa-brain"></i>
+                    <span>الاختبار</span>
+                </div>
+            </div>
+
+            <div class="button-row">
+                <button class="btn btn-full" onclick="goToScreen(2)">
+                    ابدأ رحلتك مع حصين
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- الشاشة الثانية: المحاكاة -->
+    <section id="screen-2" class="screen">
+
+        <div class="section-card">
+            <h2 class="section-heading">المحطة الأولى | اختبر وعيك</h2>
+
+            <p class="section-description">
+                أمامك تجربة تحاكي دعوة إلكترونية تبدو رسمية.
+                تعامل معها كما تتعامل مع أي رسالة تصلك في حياتك اليومية.
+                تذكّر أن المظهر وحده لا يكفي لإثبات موثوقية المصدر.
+            </p>
+
+            <div class="national-message">
+                <div class="message-icon">
+                    <i class="fa-solid fa-lightbulb"></i>
+                </div>
+                <div>
+                    <strong>فكّر قبل أن تشارك بياناتك</strong>
+                    <p>هذه محاكاة تعليمية محلية، وليست بوابة تسجيل فعلية.</p>
+                </div>
+            </div>
+
+            <form id="phishingForm" onsubmit="triggerTrap(event)" style="margin-top:25px;">
+
+                <div class="form-group">
+                    <label for="fullName">الاسم الكامل:</label>
+                    <input
+                        type="text"
+                        id="fullName"
+                        class="form-control"
+                        placeholder="أدخل اسمك الكامل"
+                        maxlength="100"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="universityNumber">الرقم الجامعي:</label>
+                    <input
+                        type="text"
+                        id="universityNumber"
+                        class="form-control"
+                        placeholder="أدخل رقمك الجامعي"
+                        inputmode="numeric"
+                        maxlength="20"
+                        pattern="[0-9]+"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        class="form-control"
+                        placeholder="أدخل بريدك الإلكتروني"
+                        maxlength="150"
+                        required
+                    >
+                </div>
+
+                <div class="privacy-note">
+                    <i class="fa-solid fa-lock"></i>
+                    <span>
+                        هذه تجربة توعوية فقط. البيانات المدخلة لا تُرسل إلى خادم
+                        ولا تُحفظ في قاعدة بيانات، وتُعرض محليًا داخل التجربة.
+                    </span>
+                </div>
+
+                <button type="submit" class="btn btn-full">
+                    تأكيد التسجيل والمشاركة
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+
+            </form>
+
+            <div class="button-row">
+                <button class="btn btn-secondary" onclick="goToScreen(1)">
+                    العودة للرئيسية
+                </button>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- الشاشة الثالثة: اكتشاف التصيد -->
+    <section id="screen-3" class="screen">
+
+        <div class="section-card">
+
+            <div class="alert-panel">
+
+                <div class="alert-icon">
+                    <i class="fa-solid fa-lock-open"></i>
+                </div>
+
+                <h2>توقف! لقد كانت محاكاة تصيد إلكتروني.</h2>
+
+                <p id="hackMessage">
+                    هذه محاكاة توعوية! لقد أدخلت بياناتك في صفحة تجريبية تحاكي أساليب التصيد الإلكتروني.
+                </p>
+
+                <div class="data-preview">
+                    <h3>
+                        <i class="fa-solid fa-eye"></i>
+                        البيانات التي أدخلتها في المحاكاة
+                    </h3>
+
+                    <div class="data-line">
+                        <span>الاسم</span>
+                        <span id="displayUser">زائر</span>
+                    </div>
+
+                    <div class="data-line">
+                        <span>الرقم الجامعي</span>
+                        <span id="displayUniversityNumber">---</span>
+                    </div>
+
+                    <div class="data-line">
+                        <span>البريد الإلكتروني</span>
+                        <span id="displayEmail">---</span>
+                    </div>
+                </div>
+
+                <div class="lesson-box">
+                    <strong><i class="fa-solid fa-graduation-cap"></i> ما الذي نتعلمه من هذه التجربة؟</strong>
+                    قد تبدو الرسالة موثوقة بسبب لغتها أو تصميمها أو استخدام اسم جهة معروفة.
+                    لكن التحقق من الرابط والجهة المرسلة يظل مسؤوليتك الأولى.
+                </div>
+
+            </div>
+
+            <div class="national-message">
+                <div class="message-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                    <strong>وعيك خط دفاعك الأول</strong>
+                    <p>
+                        لا تنتظر وقوع المشكلة حتى تتعلم الحماية.
+                        المعرفة المسبقة تصنع فرقًا حقيقيًا.
+                    </p>
+                </div>
+            </div>
+
+            <div class="button-row">
+                <button class="btn btn-full" onclick="goToScreen(4)">
+                    انتقل إلى دليل الحماية
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- الشاشة الرابعة: دليل التوعية -->
+    <section id="screen-4" class="screen">
+
+        <div class="section-card">
+
+            <h2 class="section-heading">المحطة الثانية | دليل الحماية الرقمية</h2>
+
+            <p class="section-description">
+                تعرّف على أبرز أساليب التصيد الإلكتروني، وكيف تتعامل معها بوعي ومسؤولية.
+            </p>
+
+            <div class="awareness-grid">
+
+                <div class="awareness-card">
+                    <div class="icon">
+                        <i class="fa-solid fa-fish-fins"></i>
+                    </div>
+                    <h3>ما هو التصيد الإلكتروني؟</h3>
+                    <p>
+                        أسلوب احتيالي يهدف إلى سرقة البيانات الحساسة عبر انتحال صفة جهات رسمية موثوقة.
+                    </p>
+                </div>
+
+                <div class="awareness-card">
+                    <div class="icon">
+                        <i class="fa-solid fa-link-slash"></i>
+                    </div>
+                    <h3>الروابط المزيفة</h3>
+                    <p>
+                        تستخدم روابط تقلد المواقع الأصلية مع تغيير بسيط في الحروف لخداع المستخدم.
+                    </p>
+                </div>
+
+                <div class="awareness-card">
+                    <div class="icon">
+                        <i class="fa-solid fa-masks-theater"></i>
+                    </div>
+                    <h3>انتحال الهوية</h3>
+                    <p>
+                        استغلال أسماء الجامعات والمؤسسات الحكومية والبنوك لكسب الثقة السريعة.
+                    </p>
+                </div>
+
+                <div class="awareness-card">
+                    <div class="icon">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <h3>رسائل الاستعجال</h3>
+                    <p>
+                        الضغط النفسي بعبارات مثل «سيتم إيقاف حسابك» لدفعك للتصرف دون تفكير.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="national-message">
+                <div class="message-icon">
+                    <i class="fa-solid fa-shield-heart"></i>
+                </div>
+                <div>
+                    <strong>كيف تكون فردًا واعيًا رقميًا؟</strong>
+                    <p>
+                        تحقق من مصدر الرسالة، لا تشارك كلمات المرور أو رموز التحقق،
+                        واستخدم القنوات الرسمية عند الحاجة إلى التواصل مع أي جهة.
+                    </p>
+                </div>
+            </div>
+
+            <div class="button-row">
+                <button class="btn btn-secondary" onclick="goToScreen(3)">
+                    السابق
+                </button>
+
+                <button class="btn" onclick="goToScreen(5)">
+                    اختبر جاهزيتك الرقمية
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- الشاشة الخامسة: الاختبار -->
+    <section id="screen-5" class="screen">
+
+        <div class="section-card">
+
+            <h2 class="section-heading">المحطة الثالثة | اختبر جاهزيتك الرقمية</h2>
+
+            <p class="section-description">
+                المعرفة وحدها لا تكفي؛ الأهم أن تعرف كيف تتصرف عند مواجهة موقف حقيقي.
+            </p>
+
+            <div class="question-box">
+
+                <h3>
+                    الموقف: وصلتك رسالة تبدو وكأنها من الجامعة تطلب منك تحديث بياناتك فورًا عبر رابط مختصر، ما التصرف السليم؟
+                </h3>
+
+                <ul class="options-list">
+
+                    <li tabindex="0" role="button" onclick="checkAnswer(this, false)" onkeydown="handleOptionKey(event, this, false)">
+                        أ) أضغط على الرابط وأدخل بياناتي بسرعة.
+                    </li>
+
+                    <li tabindex="0" role="button" onclick="checkAnswer(this, true)" onkeydown="handleOptionKey(event, this, true)">
+                        ب) أتحقق من مصدر الرسالة وأدخل إلى الموقع الرسمي للجامعة بنفسي.
+                    </li>
+
+                    <li tabindex="0" role="button" onclick="checkAnswer(this, false)" onkeydown="handleOptionKey(event, this, false)">
+                        ج) أرسل بياناتي للمرسل للتأكد من هويته.
+                    </li>
+
+                </ul>
+
+                <div id="quiz-feedback" class="feedback" aria-live="polite"></div>
+
+            </div>
+
+            <div class="national-message">
+                <div class="message-icon">
+                    <i class="fa-solid fa-flag"></i>
+                </div>
+                <div>
+                    <strong>الأمن الرقمي مسؤولية مشتركة</strong>
+                    <p>
+                        عندما تحمي بياناتك، وتنبّه من حولك إلى المخاطر،
+                        تساهم في بناء مجتمع أكثر وعيًا وأمانًا.
+                    </p>
+                </div>
+            </div>
+
+            <div class="button-row">
+                <button class="btn btn-secondary" onclick="goToScreen(4)">
+                    السابق
+                </button>
+
+                <button class="btn" onclick="goToScreen(6)">
+                    الوصول إلى الرسالة الختامية
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- الشاشة السادسة: الخاتمة -->
+    <section id="screen-6" class="screen">
+
+        <div class="section-card final-card">
+
+            <div class="final-emblem">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <h2 class="section-heading">
+                شكرًا لأنك اخترت أن تكون أكثر وعيًا!
+            </h2>
+
+            <p class="final-caption">
+                لقد أكملت رحلة حصين التوعوية.
+                تذكّر أن الوعي الرقمي لا ينتهي بانتهاء هذه التجربة،
+                بل يبدأ من كل قرار تتخذه عند استخدام التقنية.
+            </p>
+
+            <div class="final-quote">
+                «لا تجعل ثقتك بالمظهر تسبق تحققك من المصدر؛
+                فوعيك الرقمي هو خط دفاعك الأول».
+            </div>
+
+            <div class="national-message" style="text-align:right;">
+                <div class="message-icon">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <div>
+                    <strong>كن جزءًا من الأثر</strong>
+                    <p>
+                        شارك المعرفة، نبّه من حولك، واجعل الحماية الرقمية
+                        سلوكًا يوميًا يعكس مسؤوليتك تجاه نفسك ووطنك.
+                    </p>
+                </div>
+            </div>
+
+            <div class="button-row">
+                <button class="btn btn-full" onclick="resetExperience()">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    إعادة التجربة من البداية
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-title">حصين | وعيٌ يحمي وطنًا</div>
+
+    <div class="footer-university">
+        جامعة الملك عبدالعزيز | كلية العلوم | قسم الكيمياء
+    </div>
+
+    <div class="footer-credit">
+        تمت هذه الدعوة بواسطة مها الردادي | منى الزهراني
+    </div>
+
+    <small class="footer-disclaimer">
+        تجربة توعوية تعليمية مستقلة. لا تمثل هذه الصفحة بوابة تسجيل رسمية
+        أو جهة حكومية، ولا تجمع البيانات أو ترسلها إلى أي خادم.
+    </small>
+</footer>
+
+<script>
+
+    // التنقل بين الشاشات
+    function goToScreen(screenNumber) {
+
+        document.querySelectorAll('.screen').forEach(screen => {
+            screen.classList.remove('active');
+        });
+
+        const target = document.getElementById(`screen-${screenNumber}`);
+
+        if (target) {
+            target.classList.add('active');
+        }
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    // المحاكاة التوعوية المحلية
+    function triggerTrap(event) {
+
+        event.preventDefault();
+
+        const name = document.getElementById('fullName').value.trim();
+        const universityNumber = document.getElementById('universityNumber').value.trim();
+        const email = document.getElementById('email').value.trim();
+
+        // عرض البيانات محليًا في شاشة التوعية فقط
+        document.getElementById('displayUser').innerText = name;
+        document.getElementById('displayUniversityNumber').innerText = universityNumber;
+        document.getElementById('displayEmail').innerText = email;
+
+        document.getElementById('hackMessage').innerText =
+            `هذه محاكاة توعوية يا ${name}! لقد أدخلت بياناتك في صفحة تجريبية تحاكي أساليب التصيد الإلكتروني. لو كان الهجوم حقيقيًا، لربما تعرضت بياناتك للخطر.`;
+
+        goToScreen(3);
+
+        // لا يتم إرسال البيانات إلى أي خادم
+        // لا يتم تخزين البيانات في قاعدة بيانات
+    }
+
+    // دعم الاختيار بلوحة المفاتيح
+    function handleOptionKey(event, element, isCorrect) {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            checkAnswer(element, isCorrect);
+        }
+    }
+
+    // فحص إجابة الاختبار
+    function checkAnswer(element, isCorrect) {
+
+        const feedback = document.getElementById('quiz-feedback');
+
+        const options = element.parentElement.querySelectorAll('li');
+
+        // منع اختيار أكثر من إجابة
+        if (element.parentElement.dataset.answered === 'true') {
+            return;
+        }
+
+        element.parentElement.dataset.answered = 'true';
+
+        options.forEach(opt => {
+            opt.style.pointerEvents = 'none';
+            opt.setAttribute('aria-disabled', 'true');
+        });
+
+        if (isCorrect) {
+
+            element.style.backgroundColor = '#d1fae5';
+            element.style.borderColor = '#10b981';
+
+            feedback.className = 'feedback correct';
+
+            feedback.innerHTML =
+                '<strong>إجابة صحيحة وموفقة!</strong> تحقق من مصدر الرسائل عبر القنوات الرسمية ولا تشارك بياناتك الحساسة عبر الروابط.';
+
+        } else {
+
+            element.style.backgroundColor = '#fee2e2';
+            element.style.borderColor = '#ef4444';
+
+            feedback.className = 'feedback incorrect';
+
+            feedback.innerHTML =
+                '<strong>إجابة غير صحيحة.</strong> لا تضغط على الروابط المشبوهة، وتواصل مع الجهة الرسمية عبر قنواتها المعتمدة.';
+
+        }
+    }
+
+    // إعادة التجربة من البداية
+    function resetExperience() {
+
+        document.querySelectorAll('.options-list li').forEach(opt => {
+
+            opt.style.pointerEvents = 'auto';
+            opt.style.backgroundColor = 'white';
+            opt.style.borderColor = '#dce6df';
+            opt.removeAttribute('aria-disabled');
+
+        });
+
+        document.querySelectorAll('.options-list').forEach(list => {
+            list.removeAttribute('data-answered');
+        });
+
+        document.getElementById('quiz-feedback').className = 'feedback';
+        document.getElementById('quiz-feedback').innerHTML = '';
+
+        document.getElementById('displayUser').innerText = 'زائر';
+        document.getElementById('displayUniversityNumber').innerText = '---';
+        document.getElementById('displayEmail').innerText = '---';
+
+        document.getElementById('hackMessage').innerText =
+            'هذه محاكاة توعوية! لقد أدخلت بياناتك في صفحة تجريبية تحاكي أساليب التصيد الإلكتروني.';
+
+        document.getElementById('fullName').value = '';
+        document.getElementById('universityNumber').value = '';
+        document.getElementById('email').value = '';
+
+        goToScreen(1);
+    }
+
+</script>
+
+</body>
+</html>
