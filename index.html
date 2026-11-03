@@ -716,9 +716,48 @@ header {
 .feedback.incorrect {display:block;color:#9b2828;background:#fff0f0;border:1px solid #f1b5b5}
 
 /* الخاتمة */
-.final-card {text-align:center;padding:42px 25px}
+.final-card {
+    text-align:center;
+    padding:42px 25px;
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+    background:
+        radial-gradient(circle at 50% 15%,rgba(200,169,104,.09),transparent 35%),
+        #fff;
+}
+
+.final-card::before,
+.final-card::after {
+    content:"";
+    position:absolute;
+    width:280px;
+    height:280px;
+    border:1px solid rgba(200,169,104,.13);
+    border-radius:50%;
+    pointer-events:none;
+    z-index:-1;
+    animation:finalOrbit 18s linear infinite;
+}
+
+.final-card::before {
+    top:40px;
+    left:-170px;
+}
+
+.final-card::after {
+    bottom:80px;
+    right:-170px;
+    animation-direction:reverse;
+}
+
+@keyframes finalOrbit {
+    to {transform:rotate(360deg) scale(1.12)}
+}
 
 .final-emblem {
+    position:relative;
+    z-index:2;
     width:100px;
     height:100px;
     margin:0 auto 22px;
@@ -730,7 +769,35 @@ header {
     border-radius:30px;
     font-size:2.7rem;
     box-shadow:0 12px 35px rgba(7,85,54,.2),0 0 35px rgba(200,169,104,.12);
-    animation:shieldPulse 3s ease-in-out infinite;
+    animation:finalShield 3s ease-in-out infinite;
+}
+
+.final-emblem::before,
+.final-emblem::after {
+    content:"";
+    position:absolute;
+    inset:-10px;
+    border:1px solid rgba(200,169,104,.35);
+    border-radius:35px;
+    animation:shieldRing 3s ease-out infinite;
+}
+
+.final-emblem::after {animation-delay:1.5s}
+
+@keyframes finalShield {
+    0%,100% {
+        transform:translateY(0);
+        box-shadow:0 12px 35px rgba(7,85,54,.2),0 0 25px rgba(200,169,104,.15);
+    }
+    50% {
+        transform:translateY(-9px);
+        box-shadow:0 18px 50px rgba(7,85,54,.25),0 0 55px rgba(200,169,104,.35);
+    }
+}
+
+@keyframes shieldRing {
+    0% {transform:scale(1);opacity:.7}
+    100% {transform:scale(1.5);opacity:0}
 }
 
 .final-quote {
@@ -747,20 +814,139 @@ header {
 
 .final-caption {color:var(--muted);line-height:1.9;margin:15px auto 25px;max-width:650px}
 
+/* صندوق الوطن */
 .final-national {
     margin-top:25px;
-    padding:28px 20px;
+    padding:38px 20px;
     border-radius:18px;
     color:white;
-    background:linear-gradient(130deg,#032d20,#075536);
-    border:1px solid rgba(200,169,104,.35);
+    background:
+        radial-gradient(circle at 50% 100%,rgba(200,169,104,.19),transparent 50%),
+        linear-gradient(135deg,#021f16,#06432f 55%,#075536);
+    border:1px solid rgba(229,213,173,.4);
+    box-shadow:0 18px 45px rgba(3,45,32,.17);
     position:relative;
     overflow:hidden;
+    animation:nationalReveal 1s ease both;
 }
 
-.final-national h3 {color:var(--gold-light);font-size:1.5rem;margin-bottom:12px}
-.final-national p {line-height:2;color:rgba(255,255,255,.9)}
-.final-flag {font-size:2.7rem;margin-top:17px;display:block}
+@keyframes nationalReveal {
+    from {opacity:0;transform:translateY(25px) scale(.97)}
+    to {opacity:1;transform:translateY(0) scale(1)}
+}
+
+.final-national h3 {
+    color:var(--gold-light);
+    font-size:1.5rem;
+    margin-bottom:12px;
+    animation:textGlow 3s ease-in-out infinite;
+}
+
+@keyframes textGlow {
+    0%,100% {text-shadow:0 0 5px rgba(229,213,173,.15)}
+    50% {text-shadow:0 0 22px rgba(229,213,173,.65)}
+}
+
+.final-national p {
+    line-height:2;
+    color:rgba(255,255,255,.9);
+}
+
+/* صورة العلم السعودي */
+.final-flag-wrap {
+    position:relative;
+    width:min(310px,85%);
+    margin:30px auto 5px;
+    padding:12px;
+    border:1px solid rgba(229,213,173,.4);
+    border-radius:17px;
+    background:rgba(255,255,255,.07);
+    box-shadow:0 0 35px rgba(200,169,104,.12);
+    animation:flagEntrance 1.4s cubic-bezier(.2,.8,.2,1) both;
+    transform-origin:center;
+}
+
+.final-flag-image {
+    display:block;
+    width:100%;
+    height:auto;
+    max-height:180px;
+    object-fit:contain;
+    border-radius:8px;
+    filter:drop-shadow(0 5px 12px rgba(0,0,0,.18));
+    animation:flagWave 4s ease-in-out infinite;
+    transform-origin:left center;
+}
+
+@keyframes flagEntrance {
+    from {opacity:0;transform:translateY(25px) scale(.8)}
+    to {opacity:1;transform:translateY(0) scale(1)}
+}
+
+@keyframes flagWave {
+    0%,100% {transform:perspective(700px) rotateY(0deg) rotateZ(0deg)}
+    25% {transform:perspective(700px) rotateY(-4deg) rotateZ(-.5deg)}
+    75% {transform:perspective(700px) rotateY(4deg) rotateZ(.5deg)}
+}
+
+/* الجسيمات المتحركة */
+.final-particles {
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.final-particle {
+    position:absolute;
+    bottom:-12px;
+    left:var(--x);
+    width:var(--size);
+    height:var(--size);
+    border-radius:50%;
+    background:var(--particle-color);
+    opacity:0;
+    box-shadow:0 0 10px var(--particle-color);
+    animation:particleRise var(--duration) var(--delay) linear infinite;
+}
+
+@keyframes particleRise {
+    0% {
+        transform:translate3d(0,0,0) scale(.5);
+        opacity:0;
+    }
+    15% {opacity:.85}
+    80% {opacity:.65}
+    100% {
+        transform:translate3d(var(--drift),-260px,0) scale(1.3);
+        opacity:0;
+    }
+}
+
+/* ظهور عناصر الخاتمة بالتتابع */
+#screen-6 .final-caption,
+#screen-6 .final-quote,
+#screen-6 .final-card > .national-message {
+    animation:finalTextReveal .9s ease both;
+}
+
+#screen-6 .final-quote {animation-delay:.2s}
+#screen-6 .final-card > .national-message {animation-delay:.4s}
+
+@keyframes finalTextReveal {
+    from {opacity:0;transform:translateY(18px)}
+    to {opacity:1;transform:translateY(0)}
+}
+
+/* زر إعادة التجربة */
+#screen-6 .button-row .btn {
+    transition:transform .3s,box-shadow .3s;
+}
+
+#screen-6 .button-row .btn:hover {
+    transform:translateY(-5px);
+    box-shadow:0 12px 30px rgba(7,85,54,.25);
+}
 
 /* التذييل */
 footer {
@@ -813,6 +999,8 @@ footer::after {left:-55px;bottom:-65px}
     .data-line {flex-direction:column;gap:3px}
     .progress-wrap {padding:13px}
     .intro-emblem {width:90px;height:90px;font-size:2.8rem}
+    .final-flag-wrap {width:min(270px,90%)}
+    .final-national {padding:30px 15px}
 }
 
 @media(max-width:380px) {
@@ -825,6 +1013,13 @@ footer::after {left:-55px;bottom:-65px}
         animation-duration:.01ms!important;
         animation-iteration-count:1!important;
         transition-duration:.01ms!important;
+    }
+
+    #screen-6 *,
+    #screen-6 *::before,
+    #screen-6 *::after {
+        animation:none!important;
+        transition:none!important;
     }
 }
 </style>
@@ -1166,7 +1361,10 @@ footer::after {left:-55px;bottom:-65px}
 <!-- الشاشة السادسة -->
 <section id="screen-6" class="screen">
     <div class="section-card final-card">
-        <div class="final-emblem"><i class="fa-solid fa-shield-halved"></i></div>
+
+        <div class="final-emblem">
+            <i class="fa-solid fa-shield-halved"></i>
+        </div>
 
         <h2 class="section-heading">شكرًا لأنك اخترت أن تكون أكثر وعيًا!</h2>
 
@@ -1192,13 +1390,26 @@ footer::after {left:-55px;bottom:-65px}
             </div>
         </div>
 
+        <!-- المشهد السينمائي الختامي -->
         <div class="final-national">
-            <h3>دام عزّك يا وطن 🇸🇦</h3>
+
+            <div class="final-particles" id="finalParticles" aria-hidden="true"></div>
+
+            <h3>دام عزّك يا وطن</h3>
+
             <p>
                 حماية الوطن تبدأ من وعي أبنائه،
                 ووعيُك اليوم خطوة نحو مستقبل رقمي أكثر أمانًا.
             </p>
-            <span class="final-flag">🇸🇦</span>
+
+            <div class="final-flag-wrap">
+                <img
+                    src="IMG_2273.jpeg"
+                    alt="العلم السعودي"
+                    class="final-flag-image"
+                >
+            </div>
+
         </div>
 
         <div class="button-row">
@@ -1243,6 +1454,44 @@ function startExperience() {
 
 document.body.style.overflow = 'hidden';
 
+// إنشاء الجسيمات السينمائية في الخاتمة
+let finalParticlesCreated = false;
+
+function createFinalParticles() {
+    if (finalParticlesCreated) return;
+
+    const container = document.getElementById('finalParticles');
+    if (!container) return;
+
+    const colors = ['#e5d5ad', '#c8a968', '#ffffff', '#70c69a'];
+
+    for (let i = 0; i < 35; i++) {
+        const particle = document.createElement('span');
+
+        particle.className = 'final-particle';
+
+        const x = (i * 37) % 100;
+        const size = 2 + (i % 4);
+        const delay = (i % 9) * -0.8;
+        const duration = 5 + (i % 6);
+        const drift = ((i % 2 === 0) ? 1 : -1) * (15 + (i % 35));
+
+        particle.style.setProperty('--x', x + '%');
+        particle.style.setProperty('--size', size + 'px');
+        particle.style.setProperty('--delay', delay + 's');
+        particle.style.setProperty('--duration', duration + 's');
+        particle.style.setProperty('--drift', drift + 'px');
+        particle.style.setProperty(
+            '--particle-color',
+            colors[i % colors.length]
+        );
+
+        container.appendChild(particle);
+    }
+
+    finalParticlesCreated = true;
+}
+
 // تحديث مؤشر التقدم
 const progressNames = [
     'المحطة الأولى من ست محطات',
@@ -1277,6 +1526,11 @@ function goToScreen(screenNumber) {
     if (target) {
         target.classList.add('active');
         updateProgress(screenNumber);
+    }
+
+    // تشغيل مؤثرات الخاتمة عند الوصول للشاشة السادسة
+    if (screenNumber === 6) {
+        createFinalParticles();
     }
 
     window.scrollTo({
