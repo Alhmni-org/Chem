@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#063b2b">
+    <meta name="description" content="حصين - مبادرة توعوية مجتمعية لتعزيز الوعي الرقمي والأمن السيبراني بوصفه مسؤولية وطنية.">
     <title>حصين | الوعي الرقمي مسؤولية وطنية</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -21,6 +22,7 @@
             --green-50: #f4f8f5;
             --gold: #c8a968;
             --gold-light: #e5d5ad;
+            --sand: #eee7d7;
             --white: #ffffff;
             --ink: #1b2b25;
             --muted: #718078;
@@ -38,9 +40,7 @@
             font-family: 'Tajawal', sans-serif;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             min-height: 100vh;
@@ -51,9 +51,7 @@
             overflow-x: hidden;
         }
 
-        button, input {
-            font: inherit;
-        }
+        button, input { font: inherit; }
 
         button:focus-visible,
         input:focus-visible,
@@ -62,13 +60,13 @@
             outline-offset: 3px;
         }
 
-        /* الخلفية الهندسية */
+        /* زخارف هندسية مستوحاة من العمارة النجدية */
         .national-pattern {
             position: fixed;
             inset: 0;
             z-index: -2;
             pointer-events: none;
-            opacity: .25;
+            opacity: .24;
             background-image:
                 linear-gradient(45deg, transparent 46%, #dce8df 47%, #dce8df 49%, transparent 50%),
                 linear-gradient(-45deg, transparent 46%, #e6dfce 47%, #e6dfce 49%, transparent 50%);
@@ -76,14 +74,14 @@
             mask-image: linear-gradient(to bottom, black, transparent 75%);
         }
 
-        /* شريط الهوية */
         .top-line {
-            height: 5px;
+            height: 6px;
             background: linear-gradient(
                 90deg,
                 var(--gold),
                 var(--green-800),
                 var(--green-600),
+                var(--green-950),
                 var(--gold)
             );
         }
@@ -92,9 +90,9 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(255,255,255,.94);
+            background: rgba(255,255,255,.95);
             backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(7,85,54,.1);
+            border-bottom: 1px solid rgba(7,85,54,.12);
         }
 
         .header-inner {
@@ -144,20 +142,15 @@
             padding: 9px 15px;
         }
 
-        .national-label i {
-            color: var(--gold);
-        }
+        .national-label i { color: var(--gold); }
 
-        /* المحتوى */
         .container {
             width: min(1050px, calc(100% - 32px));
             margin: 35px auto 55px;
             flex: 1;
         }
 
-        .screen {
-            display: none;
-        }
+        .screen { display: none; }
 
         .screen.active {
             display: block;
@@ -165,26 +158,20 @@
         }
 
         @keyframes appear {
-            from {
-                opacity: 0;
-                transform: translateY(14px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* شاشة البداية */
+        /* الواجهة الرئيسية */
         .hero {
             position: relative;
             overflow: hidden;
-            min-height: 380px;
+            min-height: 420px;
             padding: 55px 45px;
             border-radius: 28px;
             color: white;
             background:
-                radial-gradient(circle at 15% 20%, rgba(200,169,104,.2), transparent 30%),
+                radial-gradient(circle at 15% 20%, rgba(200,169,104,.22), transparent 30%),
                 radial-gradient(circle at 90% 100%, rgba(37,151,103,.25), transparent 35%),
                 linear-gradient(125deg, #032d20, #075536 58%, #0c704a);
             box-shadow: 0 22px 60px rgba(3,45,32,.18);
@@ -200,23 +187,23 @@
         }
 
         .hero::before {
-            width: 270px;
-            height: 270px;
-            left: -85px;
-            top: -90px;
+            width: 300px;
+            height: 300px;
+            left: -95px;
+            top: -100px;
         }
 
         .hero::after {
-            width: 190px;
-            height: 190px;
-            left: -45px;
-            top: -50px;
+            width: 210px;
+            height: 210px;
+            left: -50px;
+            top: -55px;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 700px;
+            max-width: 760px;
         }
 
         .hero-kicker {
@@ -240,9 +227,7 @@
             letter-spacing: -2px;
         }
 
-        .hero h1 span {
-            color: var(--gold-light);
-        }
+        .hero h1 span { color: var(--gold-light); }
 
         .hero-subtitle {
             font-size: clamp(1.1rem, 3vw, 1.5rem);
@@ -252,7 +237,7 @@
         }
 
         .hero-description {
-            color: rgba(255,255,255,.78);
+            color: rgba(255,255,255,.82);
             line-height: 1.9;
             font-size: 1.05rem;
             max-width: 650px;
@@ -273,6 +258,52 @@
             border: 1px solid rgba(255,255,255,.12);
             font-size: .88rem;
             color: #f3f7f3;
+        }
+
+        /* بطاقة الإشراف */
+        .supervision-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 25px;
+            padding: 18px 21px;
+            border: 1px solid rgba(229,213,173,.35);
+            border-radius: 15px;
+            background: linear-gradient(110deg, rgba(255,255,255,.12), rgba(255,255,255,.055));
+            backdrop-filter: blur(5px);
+            max-width: 490px;
+        }
+
+        .supervision-icon {
+            flex-shrink: 0;
+            width: 51px;
+            height: 51px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: rgba(229,213,173,.15);
+            border: 1px solid rgba(229,213,173,.35);
+            color: var(--gold-light);
+            font-size: 1.35rem;
+        }
+
+        .supervision-label {
+            color: #e5d5ad;
+            font-size: .83rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .supervision-name {
+            color: white;
+            font-size: 1.15rem;
+            font-weight: 900;
+        }
+
+        .supervision-note {
+            color: rgba(255,255,255,.65);
+            font-size: .78rem;
+            margin-top: 4px;
         }
 
         .section-card {
@@ -330,7 +361,63 @@
 
         .national-message p {
             color: var(--muted);
-            line-height: 1.7;
+            line-height: 1.8;
+        }
+
+        /* قسم الانتماء الوطني */
+        .belonging-card {
+            position: relative;
+            overflow: hidden;
+            margin-top: 22px;
+            padding: 30px;
+            border-radius: 20px;
+            color: white;
+            background:
+                radial-gradient(circle at 5% 90%, rgba(200,169,104,.19), transparent 32%),
+                linear-gradient(125deg, #032d20, #075536);
+            box-shadow: 0 15px 35px rgba(3,45,32,.12);
+        }
+
+        .belonging-card::after {
+            content: "🇸🇦";
+            position: absolute;
+            left: 22px;
+            bottom: 5px;
+            font-size: 4rem;
+            opacity: .13;
+            pointer-events: none;
+        }
+
+        .belonging-heading {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--gold-light);
+            font-size: 1.45rem;
+            font-weight: 900;
+            margin-bottom: 14px;
+        }
+
+        .belonging-heading i { font-size: 1.25rem; }
+
+        .belonging-card p {
+            position: relative;
+            z-index: 1;
+            color: rgba(255,255,255,.88);
+            line-height: 2;
+            font-size: 1.03rem;
+            max-width: 850px;
+        }
+
+        .belonging-signature {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 7px 14px;
+            border: 1px solid rgba(229,213,173,.35);
+            border-radius: 30px;
+            color: var(--gold-light);
+            font-size: .85rem;
+            font-weight: 800;
         }
 
         /* أزرار */
@@ -365,9 +452,7 @@
             box-shadow: none;
         }
 
-        .btn-full {
-            width: 100%;
-        }
+        .btn-full { width: 100%; }
 
         .button-row {
             display: flex;
@@ -406,9 +491,7 @@
         }
 
         /* نموذج التجربة */
-        .form-group {
-            margin-bottom: 19px;
-        }
+        .form-group { margin-bottom: 19px; }
 
         .form-group label {
             display: block;
@@ -509,9 +592,7 @@
             overflow-wrap: anywhere;
         }
 
-        .data-line:last-child {
-            border-bottom: 0;
-        }
+        .data-line:last-child { border-bottom: 0; }
 
         .data-line span:first-child {
             color: var(--muted);
@@ -741,37 +822,36 @@
             max-width: 750px;
             margin: 14px auto 0;
             font-size: .78rem;
-            color: rgba(255,255,255,.58);
+            color: rgba(255,255,255,.65);
             line-height: 1.7;
         }
 
-        /* الاستجابة للجوال */
+        .footer-supervision {
+            display: block;
+            color: var(--gold-light);
+            font-weight: 800;
+            margin-top: 12px;
+            font-size: .9rem;
+        }
+
+        /* الجوال */
         @media (max-width: 700px) {
-            .header-inner {
-                padding: 12px 15px;
-            }
+            .header-inner { padding: 12px 15px; }
 
             .brand img {
                 width: 43px;
                 height: 43px;
             }
 
-            .brand-title {
-                font-size: .98rem;
-            }
-
-            .brand-subtitle {
-                font-size: .72rem;
-            }
+            .brand-title { font-size: .98rem; }
+            .brand-subtitle { font-size: .72rem; }
 
             .national-label {
                 font-size: .72rem;
                 padding: 7px 10px;
             }
 
-            .container {
-                margin-top: 20px;
-            }
+            .container { margin-top: 20px; }
 
             .hero {
                 min-height: auto;
@@ -779,37 +859,27 @@
                 border-radius: 20px;
             }
 
-            .hero h1 {
-                font-size: 3.6rem;
-            }
+            .hero h1 { font-size: 3.6rem; }
 
-            .hero-description {
-                font-size: .96rem;
-            }
+            .hero-description { font-size: .96rem; }
 
-            .section-card {
-                padding: 21px 17px;
-            }
+            .section-card { padding: 21px 17px; }
 
-            .journey {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .journey { grid-template-columns: repeat(2, 1fr); }
 
-            .awareness-grid {
-                grid-template-columns: 1fr;
-            }
+            .awareness-grid { grid-template-columns: 1fr; }
 
-            .national-message {
-                grid-template-columns: 1fr;
-            }
+            .national-message { grid-template-columns: 1fr; }
 
-            .button-row {
-                flex-direction: column;
-            }
+            .belonging-card { padding: 24px 19px; }
 
-            .button-row .btn {
-                width: 100%;
-            }
+            .belonging-heading { font-size: 1.2rem; }
+
+            .supervision-card { max-width: 100%; }
+
+            .button-row { flex-direction: column; }
+
+            .button-row .btn { width: 100%; }
 
             .data-line {
                 flex-direction: column;
@@ -818,8 +888,14 @@
         }
 
         @media (max-width: 380px) {
-            .national-label {
-                display: none;
+            .national-label { display: none; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
             }
         }
     </style>
@@ -878,6 +954,19 @@
                     <span class="hero-tag"><i class="fa-solid fa-user-shield"></i> حماية البيانات</span>
                     <span class="hero-tag"><i class="fa-solid fa-flag"></i> مسؤولية وطنية</span>
                 </div>
+
+                <!-- الإشراف الأكاديمي -->
+                <div class="supervision-card">
+                    <div class="supervision-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <div class="supervision-label">الإشراف الأكاديمي</div>
+                        <div class="supervision-name">تحت إشراف مشرفة القسم د. دلال العزي</div>
+                        <div class="supervision-note">مبادرة حصين للتوعية بالأمن الرقمي</div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -903,6 +992,25 @@
                     </p>
                 </div>
             </div>
+        </div>
+
+        <!-- الانتماء الوطني -->
+        <div class="belonging-card">
+            <h2 class="belonging-heading">
+                <i class="fa-solid fa-flag"></i>
+                أمن الوطن يبدأ بوعي أبنائه
+            </h2>
+
+            <p>
+                إن حماية الوطن مسؤولية تتجاوز حدود المكان؛ تبدأ من وعي أفراده،
+                وحرصهم على حماية بياناتهم ومقدراتهم الرقمية. ومن هنا تأتي مبادرة
+                حصين لترسّخ ثقافة الأمن الرقمي، وتعزز مفهوم المواطنة المسؤولة،
+                إسهامًا في وطن آمن ومجتمع رقمي واعٍ.
+            </p>
+
+            <span class="belonging-signature">
+                الانتماء للوطن مسؤولية وممارسة
+            </span>
         </div>
 
         <div class="section-card">
@@ -966,40 +1074,21 @@
 
                 <div class="form-group">
                     <label for="fullName">الاسم الكامل:</label>
-                    <input
-                        type="text"
-                        id="fullName"
-                        class="form-control"
-                        placeholder="أدخل اسمك الكامل"
-                        maxlength="100"
-                        required
-                    >
+                    <input type="text" id="fullName" class="form-control"
+                        placeholder="أدخل اسمك الكامل" maxlength="100" required>
                 </div>
 
                 <div class="form-group">
                     <label for="universityNumber">الرقم الجامعي:</label>
-                    <input
-                        type="text"
-                        id="universityNumber"
-                        class="form-control"
-                        placeholder="أدخل رقمك الجامعي"
-                        inputmode="numeric"
-                        maxlength="20"
-                        pattern="[0-9]+"
-                        required
-                    >
+                    <input type="text" id="universityNumber" class="form-control"
+                        placeholder="أدخل رقمك الجامعي" inputmode="numeric"
+                        maxlength="20" pattern="[0-9]+" required>
                 </div>
 
                 <div class="form-group">
                     <label for="email">البريد الإلكتروني:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        class="form-control"
-                        placeholder="أدخل بريدك الإلكتروني"
-                        maxlength="150"
-                        required
-                    >
+                    <input type="email" id="email" class="form-control"
+                        placeholder="أدخل بريدك الإلكتروني" maxlength="150" required>
                 </div>
 
                 <div class="privacy-note">
@@ -1030,7 +1119,6 @@
     <section id="screen-3" class="screen">
 
         <div class="section-card">
-
             <div class="alert-panel">
 
                 <div class="alert-icon">
@@ -1070,7 +1158,6 @@
                     قد تبدو الرسالة موثوقة بسبب لغتها أو تصميمها أو استخدام اسم جهة معروفة.
                     لكن التحقق من الرابط والجهة المرسلة يظل مسؤوليتك الأولى.
                 </div>
-
             </div>
 
             <div class="national-message">
@@ -1092,7 +1179,6 @@
                     <i class="fa-solid fa-arrow-left"></i>
                 </button>
             </div>
-
         </div>
 
     </section>
@@ -1101,7 +1187,6 @@
     <section id="screen-4" class="screen">
 
         <div class="section-card">
-
             <h2 class="section-heading">المحطة الثانية | دليل الحماية الرقمية</h2>
 
             <p class="section-description">
@@ -1111,43 +1196,27 @@
             <div class="awareness-grid">
 
                 <div class="awareness-card">
-                    <div class="icon">
-                        <i class="fa-solid fa-fish-fins"></i>
-                    </div>
+                    <div class="icon"><i class="fa-solid fa-fish-fins"></i></div>
                     <h3>ما هو التصيد الإلكتروني؟</h3>
-                    <p>
-                        أسلوب احتيالي يهدف إلى سرقة البيانات الحساسة عبر انتحال صفة جهات رسمية موثوقة.
-                    </p>
+                    <p>أسلوب احتيالي يهدف إلى سرقة البيانات الحساسة عبر انتحال صفة جهات رسمية موثوقة.</p>
                 </div>
 
                 <div class="awareness-card">
-                    <div class="icon">
-                        <i class="fa-solid fa-link-slash"></i>
-                    </div>
+                    <div class="icon"><i class="fa-solid fa-link-slash"></i></div>
                     <h3>الروابط المزيفة</h3>
-                    <p>
-                        تستخدم روابط تقلد المواقع الأصلية مع تغيير بسيط في الحروف لخداع المستخدم.
-                    </p>
+                    <p>تستخدم روابط تقلد المواقع الأصلية مع تغيير بسيط في الحروف لخداع المستخدم.</p>
                 </div>
 
                 <div class="awareness-card">
-                    <div class="icon">
-                        <i class="fa-solid fa-masks-theater"></i>
-                    </div>
+                    <div class="icon"><i class="fa-solid fa-masks-theater"></i></div>
                     <h3>انتحال الهوية</h3>
-                    <p>
-                        استغلال أسماء الجامعات والمؤسسات الحكومية والبنوك لكسب الثقة السريعة.
-                    </p>
+                    <p>استغلال أسماء الجامعات والمؤسسات الحكومية والبنوك لكسب الثقة السريعة.</p>
                 </div>
 
                 <div class="awareness-card">
-                    <div class="icon">
-                        <i class="fa-solid fa-clock-rotate-left"></i>
-                    </div>
+                    <div class="icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
                     <h3>رسائل الاستعجال</h3>
-                    <p>
-                        الضغط النفسي بعبارات مثل «سيتم إيقاف حسابك» لدفعك للتصرف دون تفكير.
-                    </p>
+                    <p>الضغط النفسي بعبارات مثل «سيتم إيقاف حسابك» لدفعك للتصرف دون تفكير.</p>
                 </div>
 
             </div>
@@ -1166,16 +1235,12 @@
             </div>
 
             <div class="button-row">
-                <button class="btn btn-secondary" onclick="goToScreen(3)">
-                    السابق
-                </button>
-
+                <button class="btn btn-secondary" onclick="goToScreen(3)">السابق</button>
                 <button class="btn" onclick="goToScreen(5)">
                     اختبر جاهزيتك الرقمية
                     <i class="fa-solid fa-arrow-left"></i>
                 </button>
             </div>
-
         </div>
 
     </section>
@@ -1184,7 +1249,6 @@
     <section id="screen-5" class="screen">
 
         <div class="section-card">
-
             <h2 class="section-heading">المحطة الثالثة | اختبر جاهزيتك الرقمية</h2>
 
             <p class="section-description">
@@ -1192,13 +1256,11 @@
             </p>
 
             <div class="question-box">
-
                 <h3>
                     الموقف: وصلتك رسالة تبدو وكأنها من الجامعة تطلب منك تحديث بياناتك فورًا عبر رابط مختصر، ما التصرف السليم؟
                 </h3>
 
                 <ul class="options-list">
-
                     <li tabindex="0" role="button" onclick="checkAnswer(this, false)" onkeydown="handleOptionKey(event, this, false)">
                         أ) أضغط على الرابط وأدخل بياناتي بسرعة.
                     </li>
@@ -1210,11 +1272,9 @@
                     <li tabindex="0" role="button" onclick="checkAnswer(this, false)" onkeydown="handleOptionKey(event, this, false)">
                         ج) أرسل بياناتي للمرسل للتأكد من هويته.
                     </li>
-
                 </ul>
 
                 <div id="quiz-feedback" class="feedback" aria-live="polite"></div>
-
             </div>
 
             <div class="national-message">
@@ -1231,16 +1291,12 @@
             </div>
 
             <div class="button-row">
-                <button class="btn btn-secondary" onclick="goToScreen(4)">
-                    السابق
-                </button>
-
+                <button class="btn btn-secondary" onclick="goToScreen(4)">السابق</button>
                 <button class="btn" onclick="goToScreen(6)">
                     الوصول إلى الرسالة الختامية
                     <i class="fa-solid fa-arrow-left"></i>
                 </button>
             </div>
-
         </div>
 
     </section>
@@ -1249,7 +1305,6 @@
     <section id="screen-6" class="screen">
 
         <div class="section-card final-card">
-
             <div class="final-emblem">
                 <i class="fa-solid fa-shield-halved"></i>
             </div>
@@ -1288,7 +1343,6 @@
                     إعادة التجربة من البداية
                 </button>
             </div>
-
         </div>
 
     </section>
@@ -1302,6 +1356,10 @@
         جامعة الملك عبدالعزيز | كلية العلوم | قسم الكيمياء
     </div>
 
+    <span class="footer-supervision">
+        تحت إشراف مشرفة القسم د. دلال العزي
+    </span>
+
     <div class="footer-credit">
         تمت هذه الدعوة بواسطة مها الردادي | منى الزهراني
     </div>
@@ -1313,10 +1371,8 @@
 </footer>
 
 <script>
-
     // التنقل بين الشاشات
     function goToScreen(screenNumber) {
-
         document.querySelectorAll('.screen').forEach(screen => {
             screen.classList.remove('active');
         });
@@ -1335,14 +1391,12 @@
 
     // المحاكاة التوعوية المحلية
     function triggerTrap(event) {
-
         event.preventDefault();
 
         const name = document.getElementById('fullName').value.trim();
         const universityNumber = document.getElementById('universityNumber').value.trim();
         const email = document.getElementById('email').value.trim();
 
-        // عرض البيانات محليًا في شاشة التوعية فقط
         document.getElementById('displayUser').innerText = name;
         document.getElementById('displayUniversityNumber').innerText = universityNumber;
         document.getElementById('displayEmail').innerText = email;
@@ -1351,9 +1405,6 @@
             `هذه محاكاة توعوية يا ${name}! لقد أدخلت بياناتك في صفحة تجريبية تحاكي أساليب التصيد الإلكتروني. لو كان الهجوم حقيقيًا، لربما تعرضت بياناتك للخطر.`;
 
         goToScreen(3);
-
-        // لا يتم إرسال البيانات إلى أي خادم
-        // لا يتم تخزين البيانات في قاعدة بيانات
     }
 
     // دعم الاختيار بلوحة المفاتيح
@@ -1366,12 +1417,9 @@
 
     // فحص إجابة الاختبار
     function checkAnswer(element, isCorrect) {
-
         const feedback = document.getElementById('quiz-feedback');
-
         const options = element.parentElement.querySelectorAll('li');
 
-        // منع اختيار أكثر من إجابة
         if (element.parentElement.dataset.answered === 'true') {
             return;
         }
@@ -1384,38 +1432,29 @@
         });
 
         if (isCorrect) {
-
             element.style.backgroundColor = '#d1fae5';
             element.style.borderColor = '#10b981';
 
             feedback.className = 'feedback correct';
-
             feedback.innerHTML =
                 '<strong>إجابة صحيحة وموفقة!</strong> تحقق من مصدر الرسائل عبر القنوات الرسمية ولا تشارك بياناتك الحساسة عبر الروابط.';
-
         } else {
-
             element.style.backgroundColor = '#fee2e2';
             element.style.borderColor = '#ef4444';
 
             feedback.className = 'feedback incorrect';
-
             feedback.innerHTML =
                 '<strong>إجابة غير صحيحة.</strong> لا تضغط على الروابط المشبوهة، وتواصل مع الجهة الرسمية عبر قنواتها المعتمدة.';
-
         }
     }
 
     // إعادة التجربة من البداية
     function resetExperience() {
-
         document.querySelectorAll('.options-list li').forEach(opt => {
-
             opt.style.pointerEvents = 'auto';
             opt.style.backgroundColor = 'white';
             opt.style.borderColor = '#dce6df';
             opt.removeAttribute('aria-disabled');
-
         });
 
         document.querySelectorAll('.options-list').forEach(list => {
@@ -1438,7 +1477,6 @@
 
         goToScreen(1);
     }
-
 </script>
 
 </body>
